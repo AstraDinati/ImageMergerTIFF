@@ -29,7 +29,9 @@ def merge_images(folders, output_file):
 
     spacing = 120  # Расстояние между изображениями
     images_per_row = adaptive_images_per_row(len(images))
-    num_rows = (len(images) + images_per_row - 1) // images_per_row
+    num_rows = (
+        len(images) + images_per_row - 1
+    ) // images_per_row  # Количество строк изображений
 
     max_width = max(img.size[0] for img in images)
     max_height = max(img.size[1] for img in images)
@@ -53,8 +55,6 @@ def merge_images(folders, output_file):
         result.paste(img, (x_offset, y_offset))
         x_offset += max_width + spacing
 
-    x_offset -= spacing
-    y_offset -= spacing
     result.save(output_file, format="TIFF")
 
 
